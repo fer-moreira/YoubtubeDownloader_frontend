@@ -1,0 +1,25 @@
+
+.main {
+    width: 100%;
+    min-height: 100vh;
+
+    
+    background-image: $gradient;
+
+    &__page {
+        width: 100%;
+        min-height: 100vh;
+        display: grid;
+        grid-template-rows: 60px auto 114px;
+        // display: flex;
+        // flex-direction: column;
+        // justify-content: space-between;
+        
+        &--interaction {
+            width: 100%;
+
+            @import '../elements/_converter.scss';
+            @import '../elements/_last_videos.scss';
+        }
+    }
+}
