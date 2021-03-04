@@ -1,4 +1,6 @@
 .video {
+    text-decoration: none;
+
     &__container {
         display: flex;
         flex-direction: row;
@@ -7,6 +9,7 @@
             .thumbnail {
                 width: 227px;
                 height: 123px;
+                border-radius: 5px;
             }
         }
         &--details {

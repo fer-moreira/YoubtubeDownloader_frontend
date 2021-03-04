@@ -1,32 +1,58 @@
 import React from 'react';
 import VideoBox from './mixins/video_box';
 
+import APICaller from "../../api/api_caster";
+
 class LastVideos extends React.Component {
     constructor(props) {
         super(props);
         
         this.state = {
-            videos_count: props.count
+            pageLoaded: false,
+
+            videos_count: props.count,
+            videos_boxes_loaded : false,
+            video_boxes : []
         }
     }
+
+    componentDidMount() {
+        this.setState({
+            pageLoaded: true
+        });
+
+        var boxes = [];
+        let api = new APICaller();
+        const res = api.getVideosList();
+
+        res.then(data => {            
+            data.videos.map((e, i) => {
+                console.log(e);
+                boxes.push(<VideoBox key={i} video={{
+                    id:        e.uid,
+                    url:       e.url,
+                    title:     e.title,
+                    channel:   e.uploader,
+                    views:     this.NumberDotted(e.views),
+                    thumb_url: e.thumbnail,
+                    thumb_alt: e.title
+                }} />);
+            });
+
+            this.setState({
+                video_boxes : boxes,
+                videos_boxes_loaded: true,
+            });
+        });
+    }
     
-    RenderBoxes () {
-        let boxes = []
 
-        for (let i = 0; i < this.state.videos_count; i++) {
-            boxes.push(<VideoBox video={{
-                id: i,
-                title:'Dua Lipa - Hallucinate (Official Lyrics Video)',
-                channel: "Dua Lipa",
-                views: "11.087.007 views",
-                thumb_url: 'https://i.ytimg.com/vi_webp/lOfFxhAhZuA/maxresdefault.webp',
-                thumb_alt: 'Dua Lipa - Hallucinate (Official Lyrics Video)'
-            }} />);
+    NumberDotted (number) {
+        try {
+            return ((number).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + " views");
+        } catch (error) {
+            return (number.toString() + " views")
         }
-
-
-
-        return boxes
     }
 
     render () {
@@ -37,11 +63,7 @@ class LastVideos extends React.Component {
                     <h2 className="header-title">Last processed videos</h2>
                 </div>
                 <div className="processed-videos__container--boxes">
-                    {
-                        this.RenderBoxes().map((e)=>(
-                            e
-                        ))
-                    }
+                    {this.state.videos_boxes_loaded && this.state.video_boxes}
                 </div>
             </div>
         </div>

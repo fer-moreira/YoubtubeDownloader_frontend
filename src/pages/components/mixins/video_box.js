@@ -11,7 +11,7 @@ class VideoBox extends Component {
 
     render() {
         return (
-            <div itemID={this.state.video.id} className="video">
+            <a key={this.state.video.id} className="video" href={this.state.video.url} target="_blank" rel="noreferrer">
                 <div className="video__container">
                     <div className="video__container--thumbnail">
                         <img className="thumbnail" src={this.state.video.thumb_url} alt={this.state.video.thumb_alt}/>
@@ -22,7 +22,7 @@ class VideoBox extends Component {
                         <span className="video-info vviews">{this.state.video.views}</span>
                     </div>
                 </div>
-            </div>
+            </a>
         )
     }
 }

@@ -50,6 +50,8 @@ class Converter extends React.Component {
                 selected_video_url : url_value
             });
         }
+
+        console.log(process.env);
     }
 
     OnChangeFormat (e) {

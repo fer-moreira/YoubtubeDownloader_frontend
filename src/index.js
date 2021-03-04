@@ -1,12 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-// import './index.css';
-// import App from './App';
-
 import './static/scss/base.scss';
-
 import Mainpage from "./pages/mainpage";
+
+// var cors = require('cors');
 
 ReactDOM.render(
   <React.StrictMode>
@@ -14,3 +12,5 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
+
+// app.use(cors());
