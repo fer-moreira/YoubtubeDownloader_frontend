@@ -1,0 +1,63 @@
+$shimmer-gradient: linear-gradient(268.62deg, rgba(14, 14, 33, 0) 1.18%, rgba(14, 14, 33, 0) 1.19%, #202039 46.44%, rgba(14, 14, 33, 0) 98.82%);
+
+.placeholder {
+    display: flex;
+    flex-direction: row;
+    width: 482px;
+    height: 123px;
+
+
+    &--image {
+        width: 227px;
+        height: 123px;
+        border-radius: 5px;
+        background: $shimmer-gradient;
+        box-shadow: 13px 13px 36px rgba(0, 0, 0, 0.1);
+    }
+
+    &__detail {
+        max-width: 235px;
+        margin: 6px 0px 6px 20px;
+        width: 50%;
+
+        display: flex;
+        flex-direction: column;
+        align-items: baseline;
+        gap: 7px;
+
+        &--text {
+            height: 20px;
+            width: 100%;
+            
+            background: $shimmer-gradient;
+            box-shadow: 13px 13px 36px rgba(0, 0, 0, 0.1);
+
+            &.title {
+                height: 43px;
+                width: 100%;
+                margin-bottom: 5px;
+
+                background: $shimmer-gradient;
+                box-shadow: 13px 13px 36px rgba(0, 0, 0, 0.1);
+            }
+        }
+    }
+}
+
+.animated {
+    animation-duration: 200s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: placeHolderShimmer;
+    animation-timing-function: linear;
+}
+
+
+@keyframes placeHolderShimmer{
+    0%{
+        background-position: -9999px 0
+    }
+    100%{
+        background-position: 9999px 0
+    }
+}

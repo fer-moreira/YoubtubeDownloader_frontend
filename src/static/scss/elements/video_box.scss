@@ -1,5 +1,12 @@
 .video {
+    width: 100%;
     text-decoration: none;
+
+    &:hover {
+        .video__container--thumbnail .thumbnail{
+            filter: brightness(1.2);
+        }
+    }
 
     &__container {
         display: flex;
@@ -7,9 +14,15 @@
 
         &--thumbnail {
             .thumbnail {
+                transition: 200ms filter;
+
                 width: 227px;
                 height: 123px;
                 border-radius: 5px;
+                background-position: center;
+                background-size: cover;
+                background-repeat: no-repeat;
+
             }
         }
         &--details {
